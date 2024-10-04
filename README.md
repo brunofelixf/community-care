@@ -43,3 +43,17 @@ A API deve oferecer os seguintes relatórios:
 - Histórico de negociação.
   - O relatório de histórico de negociação deve conter somente negociações de um determinado centro. Deste modo, deve-se filtrar este relatório para que não sejam retornadas negociações pertencentes a outros centros. Este filtro deve ser obrigatório.
   - Do mesmo modo, o Histórico de negociações deve disponibilizar a opção de filtrar as negociações que aconteceram de um ponto no passado até o momento atual. Por exemplo: Ao enviar a data de três horas atrás nesse filtro, só devem ser retornados as negociações que aconteceram no período de três horas atrás até o momento atual.
+
+  ---
+
+  ## Rodar Aplicaçcão
+
+  ### Api e Banco no Docker
+
+  docker-compose up --build
+
+  ### Api local e Banco no Docker
+
+  docker-compose up sqlserver
+
+  mvn spring-boot:run -Dspring-boot.run.profiles=local
