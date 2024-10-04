@@ -17,6 +17,8 @@ import com.brunofelix.community_care.application.mapper.CommunityCenterMapper;
 import com.brunofelix.community_care.domain.model.CommunityCenter;
 import com.brunofelix.community_care.domain.service.CommunityCenterService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/community-centers")
 public class CommunityCenterController {
@@ -25,7 +27,7 @@ public class CommunityCenterController {
     private CommunityCenterService service;
 
     @PostMapping("/create")
-    public ResponseEntity<CommunityCenterDTO> createCommunityCenter(@RequestBody CommunityCenterDTO communityCenterDTO){
+    public ResponseEntity<CommunityCenterDTO> createCommunityCenter( @Valid @RequestBody CommunityCenterDTO communityCenterDTO){
         CommunityCenter communityCenter = CommunityCenterMapper.toEntity(communityCenterDTO);
         CommunityCenter createdCommunityCenter = service.save(communityCenter);
         CommunityCenterDTO createdCommunityCenterDTO = CommunityCenterMapper.toDTO(createdCommunityCenter);
