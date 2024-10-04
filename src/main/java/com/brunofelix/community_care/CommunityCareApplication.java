@@ -5,7 +5,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 import io.github.cdimascio.dotenv.Dotenv;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 
+@OpenAPIDefinition(
+		info = @Info(
+				title = "Community Care API",
+				version = "1.0",
+				description = "API for managing community centers and their services"
+		)
+)
 @SpringBootApplication
 public class CommunityCareApplication {
 
