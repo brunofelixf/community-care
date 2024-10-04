@@ -45,12 +45,4 @@ public class CommunityCenter implements Serializable {
         return ((double) currentOccupancy / maximumCapacity) * 100;
     }
 
-    public CommunityCenter(String name, String address, Location location, int maximumCapacity, int currentOccupancy, Resources resources) {
-        this.name = name;
-        this.address = address;
-        this.location = location;
-        this.maximumCapacity = maximumCapacity;
-        this.currentOccupancy = currentOccupancy;
-        this.resources = resources;
-    }
 }

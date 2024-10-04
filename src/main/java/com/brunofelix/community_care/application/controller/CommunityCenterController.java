@@ -16,9 +16,9 @@ import com.brunofelix.community_care.application.dto.CommunityCenterNoIdDTO;
 import com.brunofelix.community_care.application.mapper.CommunityCenterMapper;
 import com.brunofelix.community_care.domain.model.CommunityCenter;
 import com.brunofelix.community_care.domain.service.CommunityCenterService;
+import com.brunofelix.community_care.exception.ResourceNotFoundException;
 
 import jakarta.validation.Valid;
-
 @RestController
 @RequestMapping("/api/community-centers")
 public class CommunityCenterController {
@@ -27,7 +27,7 @@ public class CommunityCenterController {
     private CommunityCenterService service;
 
     @PostMapping("/create")
-    public ResponseEntity<CommunityCenterDTO> createCommunityCenter( @Valid @RequestBody CommunityCenterDTO communityCenterDTO){
+    public ResponseEntity<CommunityCenterDTO> createCommunityCenter(@Valid @RequestBody CommunityCenterDTO communityCenterDTO){
         CommunityCenter communityCenter = CommunityCenterMapper.toEntity(communityCenterDTO);
         CommunityCenter createdCommunityCenter = service.save(communityCenter);
         CommunityCenterDTO createdCommunityCenterDTO = CommunityCenterMapper.toDTO(createdCommunityCenter);
@@ -38,7 +38,7 @@ public class CommunityCenterController {
     public ResponseEntity<CommunityCenterNoIdDTO> getCommunityCenter(@PathVariable Long id) {
         return service.findById(id)
                 .map(CommunityCenter -> ResponseEntity.ok(CommunityCenterMapper.toDtoWithoutId(CommunityCenter)))
-                .orElse(ResponseEntity.notFound().build());
+                .orElseThrow(() -> new ResourceNotFoundException("Community Center not found"));
     }
 
     @GetMapping("")
